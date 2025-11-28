@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://cno1voconr8yt"]
+
+[ext_resource type="Script" uid="uid://brg4w0r6ewwkf" path="res://joueur.gd" id="1_tlwt5"]
+[ext_resource type="Texture2D" uid="uid://bybsrvpsokpi0" path="res://Flappy.png" id="2_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://cjfy1i4fsa4c1" path="res://wallnode.tscn" id="3_036b0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n2yf1"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jlfcr"]
+radius = 8.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlwt5"]
+size = Vector2(10, 112)
+
+[node name="World" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = -16.0
+offset_top = -48.0
+offset_right = 16.0
+offset_bottom = -32.0
+
+[node name="JoueurNode" type="Node2D" parent="."]
+
+[node name="Joueur" type="CharacterBody2D" parent="JoueurNode"]
+script = ExtResource("1_tlwt5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JoueurNode/Joueur"]
+shape = SubResource("CircleShape2D_n2yf1")
+
+[node name="Sprite2D" type="Sprite2D" parent="JoueurNode/Joueur"]
+texture = ExtResource("2_aqk2v")
+
+[node name="Capteur" type="Area2D" parent="JoueurNode/Joueur"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JoueurNode/Joueur/Capteur"]
+shape = SubResource("CircleShape2D_jlfcr")
+
+[node name="Resetter" type="Area2D" parent="JoueurNode/Joueur"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JoueurNode/Joueur/Resetter"]
+position = Vector2(-147, 0)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[node name="Wallnode" parent="." instance=ExtResource("3_036b0")]
+position = Vector2(192, 0)
+metadata/_edit_group_ = true
+
+[node name="Wallnode2" parent="." instance=ExtResource("3_036b0")]
+position = Vector2(288, -24)
+metadata/_edit_group_ = true
+
+[node name="Wallnode3" parent="." instance=ExtResource("3_036b0")]
+position = Vector2(368, -8)
+metadata/_edit_group_ = true
+
+[node name="Wallnode4" parent="." instance=ExtResource("3_036b0")]
+position = Vector2(448, -6)
+metadata/_edit_group_ = true
+
+[node name="Wallnode5" parent="." instance=ExtResource("3_036b0")]
+position = Vector2(528, -26)
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1.10727, 1.68364)
+zoom = Vector2(5, 5)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+custom_minimum_size = Vector2(1000, 1000)
+offset_left = -352.0
+offset_top = -280.0
+offset_right = 888.0
+offset_bottom = 720.0
+color = Color(5.58317e-06, 0.665776, 0.879685, 1)
+
+[connection signal="area_entered" from="JoueurNode/Joueur/Capteur" to="JoueurNode/Joueur" method="_on_capteur_area_entered"]
+[connection signal="body_entered" from="JoueurNode/Joueur/Capteur" to="JoueurNode/Joueur" method="_on_capteur_body_entered"]
+[connection signal="body_entered" from="JoueurNode/Joueur/Resetter" to="JoueurNode/Joueur" method="_on_resetter_body_entered"]

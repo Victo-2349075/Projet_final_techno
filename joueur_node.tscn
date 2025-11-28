@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjg0bilnjtuoe"]
+
+[ext_resource type="Script" uid="uid://brg4w0r6ewwkf" path="res://joueur.gd" id="1_2jvqv"]
+[ext_resource type="Texture2D" uid="uid://bybsrvpsokpi0" path="res://Flappy.png" id="2_xhq5b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n2yf1"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jlfcr"]
+radius = 8.5
+
+[node name="JoueurNode" type="Node2D"]
+scale = Vector2(10, 10)
+
+[node name="Joueur" type="CharacterBody2D" parent="."]
+script = ExtResource("1_2jvqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Joueur"]
+shape = SubResource("CircleShape2D_n2yf1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Joueur"]
+texture = ExtResource("2_xhq5b")
+
+[node name="Capteur" type="Area2D" parent="Joueur"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Joueur/Capteur"]
+shape = SubResource("CircleShape2D_jlfcr")
