@@ -27,14 +27,14 @@ func mur_reinitialisation():
 	get_parent().call_deferred("add_child", mur_instance)
 # Ajoute le mur à la scène après la frame courante (pour éviter les conflits de modification)
 
-# Appelé quand un corps (mur) entre en collision avec le "resetter" (limite gauche de l’écran)
+# Appelé quand un  mur entre en collision avec le resetter (limite gauche de l’écran)
 func _on_resetter_body_entered(body: Node2D) -> void:
 	if body.name == "Walls":
 		body.queue_free()       # Supprime le mur actuel
 		mur_reinitialisation()  # Crée un nouveau mur
 	
 
-# Appelé quand une zone détecte une entrée (par ex. le joueur traverse une zone de points)
+# Appelé quand une zone détecte une entrée (par example le joueur traverse une zone de points)
 func _on_capteur_area_entered(area: Area2D) -> void:
 	if area.name == "PointArea":
 		score=score+1
