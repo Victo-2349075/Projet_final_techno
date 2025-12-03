@@ -1,3 +1,11 @@
+#https://docs.godotengine.org/en/stable/ (godotEngine)
+
+# https://stackoverflow.com/questions/63206231/godot-3-2-1-cant-change-this-state-while-flushing-queries-use-call-deferred(stackoverflow)
+
+#https://stackoverflow.com/questions/75092771/in-reference-class-the-method-get-tree-isnt-declared-in-the-current-class(stackoverflow)
+
+#https://docs.godotengine.org/en/stable/tutorials/ui/index.html (godot engine en général tu va aussi le voir dans mon Rapport de recherche)
+
 extends CharacterBody2D
 
 const HAUT = Vector2(0, -1)
